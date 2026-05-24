@@ -1,7 +1,10 @@
 __pycache__/
 *.py[cod]
 .venv/
+venv/
+AI-Web-App/venv/
 .env
+AI-Web-App/.env
 .idea/
 .vscode/
 *.log

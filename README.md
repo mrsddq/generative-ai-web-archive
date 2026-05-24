@@ -13,9 +13,22 @@ AI-Web-App/
 Baseline repository structure is complete:
 
 - application folder
+- Azure Translator Flask app
+- `.env.example` for required credentials
 - root README
 - root `.gitignore`
 
+## Setup
+
+```bash
+cd AI-Web-App
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+copy .env.example .env
+flask --app app run
+```
+
 ## Maintenance Note
 
-The repository currently includes generated Python cache files and bundled executables. Future cleanup should remove generated artifacts from Git history if this project becomes production-facing.
+Keep this archived until it receives tests, screenshots, and a deployment path. Generated virtual environment files and local `.env` values should not be committed.
