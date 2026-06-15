@@ -32,3 +32,5 @@ flask --app app run
 ## Maintenance Note
 
 Keep this archived until it receives tests, screenshots, and a deployment path. Generated virtual environment files and local `.env` values should not be committed.
+
+The concrete upgrade checklist lives in [docs/UPGRADE_PLAN.md](docs/UPGRADE_PLAN.md).
