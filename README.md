@@ -1,4 +1,4 @@
-# GAI
+# Generative AI Web Archive
 
 A generative AI web application archive located in the `AI-Web-App/` folder.
 
