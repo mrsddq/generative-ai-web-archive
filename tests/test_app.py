@@ -46,6 +46,17 @@ class TranslatorTests(unittest.TestCase):
         self.assertEqual(response.status_code, 502)
         self.assertNotIn(b"sensitive provider detail", response.data)
 
+    @patch.object(module.requests, "post", side_effect=requests.Timeout)
+    def test_errors_preserve_form_input_as_escaped_text(self, post):
+        for text, status in ((" <script>alert(1)</script> ", 502), ("x" * 5001, 400)):
+            with self.subTest(status=status):
+                response = self.client.post("/", data={"text": text, "language": "de"})
+                self.assertEqual(response.status_code, status)
+                escaped = text.replace("<", "&lt;").replace(">", "&gt;").encode()
+                self.assertIn(escaped + b"</textarea>", response.data)
+                self.assertIn(b'<option value="de" selected>', response.data)
+                self.assertNotIn(b"<script>", response.data)
+
     @patch.object(module.requests, "post")
     def test_malformed_responses_are_handled(self, post):
         for payload in ([], None, {}, [{"translations": []}], [{"translations": [{"text": 42}]}]):
